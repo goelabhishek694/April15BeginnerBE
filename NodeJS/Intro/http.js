@@ -8,12 +8,16 @@ const server = http.createServer((req, res) => {
   console.log(req.method);
   console.log(req.url);
   if (req.url == "/login") {
-    res.setHeader("Content-Type", "application/json");
-    const jsonData = {
-      message: "Hello, World !",
-      date: new Date(),
-    };
-    res.write(JSON.stringify(jsonData));
+    if (req.method == "GET") {
+      res.setHeader("Content-Type", "application/json");
+      const jsonData = {
+        message: "Hello, World !",
+        date: new Date(),
+      };
+      res.write(JSON.stringify(jsonData));
+    } else if (req.method == "POST") {
+      //get data from req object , process it and store in db
+    }
   } else {
     // res.setHeader("Content-Type","text/plain");
     res.setHeader("Content-Type", "text/html");
