@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "7a1a92fb-9ec0-464e-abb5-eba37a3c50e4",
+		"name": "April15BeginnerBE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28102982"
+	},
+	"item": [
+		{
+			"name": "Intro",
+			"item": [
+				{
+					"name": "product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Cooker\",\n    \"price\": 20,\n    \"isInStock\":false,\n    \"category\": \"cooking essentials\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8081/api/products"
+					},
+					"response": []
+				},
+				{
+					"name": "products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8081/api/products"
+					},
+					"response": []
+				},
+				{
+					"name": "product by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8081/api/products/6803d6dfc08162fc92f7440d"
+					},
+					"response": []
+				},
+				{
+					"name": "product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"price\": 120000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8081/api/products/6803d6dfc08162fc92f7440d"
+					},
+					"response": []
+				},
+				{
+					"name": "product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8081/api/products/6803d803c08162fc92f7440f"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
