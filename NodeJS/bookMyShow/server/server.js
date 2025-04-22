@@ -2,8 +2,14 @@ const express = require("express");
 //loads the env variable in process.env object
 require("dotenv").config();
 const connectToDB = require("./config/db");
-const app = express();
+const userRouter = require("./routes/userRoutes");
 connectToDB();
+const app = express();
+
+app.use(express.json());
+app.use("/api/users", userRouter)
+// app.use("/api/movies", movieRouter)
+
 
 
 

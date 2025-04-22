@@ -1,9 +1,19 @@
 import React from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { Link } from "react-router-dom";
+import { RegisterUser } from "../../calls/users";
 function Register() {
-  const onFinish = () => {
-    console.log("form submitted");
+  const onFinish = async (values) => {
+    try{
+      const response = await RegisterUser(values);
+      if(response.success){
+        message.success(response.message);
+      }else{
+        message.error(response.message);
+      }
+    }catch(err){
+      message.error(err.message);
+    }
     
   };
   return (
@@ -16,7 +26,7 @@ function Register() {
           <section className="right-section">
             <Form onFinish={onFinish} layout="vertical">
             <Form.Item
-                label="name"
+                label="Name"
                 htmlFor="name"
                 name="name"
                 className="d-block"
