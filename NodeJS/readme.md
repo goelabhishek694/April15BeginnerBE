@@ -7,3 +7,6 @@ https://mongoosejs.com/docs/queries.html
 
 whatsapp group link
 https://chat.whatsapp.com/KAUolcJN0EAE4O8k2UMvKb
+
+
+yaya we installed git, postman , node
