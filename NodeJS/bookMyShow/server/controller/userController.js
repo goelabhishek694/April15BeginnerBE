@@ -1,5 +1,5 @@
 const User = require("../models/userModel");
-
+const jwt = require('jsonwebtoken');
 exports.registerUser = async (req, res) => {
   try {
     const { email } = req.body;
@@ -42,7 +42,8 @@ exports.loginUser = async (req, res) => {
             success: false,
           });
       }
-
+      const token = jwt.sign({"userId": user["_id"]},process.env.SECRET_KEY , {expiresIn: "1d"});
+      console.log(token);
       return res.json({
         message: "User logged in",
         success: true,
