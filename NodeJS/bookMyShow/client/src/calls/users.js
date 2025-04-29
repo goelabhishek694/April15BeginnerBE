@@ -17,6 +17,17 @@ export const LoginUser = async(value) => {
         return response.data;
     }catch(err){
         console.log(err);
-        return err 
+        return err.response.data
     }
 }
+
+export const GetCurrentUser = async() => {
+    try{
+        const response = await axiosInstance.get("/api/users/");
+        return response.data;
+    }catch(err){
+        console.log(err);
+        return err.response.data
+    }
+}
+

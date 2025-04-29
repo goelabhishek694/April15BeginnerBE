@@ -57,3 +57,21 @@ exports.loginUser = async (req, res) => {
       })
     }
   };
+
+exports.getCurrentUser = async (req, res) => {
+  try{
+    let userId = req.userId;
+    console.log(userId);
+    const user = await User.findById(userId);
+    return res.json({
+      message: "user retrieved successfully",
+      success: true,
+      data: user
+    })
+  }catch(err){
+    res.status(500).json({
+      message: err.message,
+      success: false
+  })
+  }
+}
