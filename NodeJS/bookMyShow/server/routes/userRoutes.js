@@ -5,7 +5,5 @@ userRouter.post("/register", registerUser);
 userRouter.post("/login", loginUser);
 userRouter.get("/", authMiddleware, getCurrentUser);
 
-// userRouter.post("/register", registerUser);
-
 
 module.exports = userRouter;
