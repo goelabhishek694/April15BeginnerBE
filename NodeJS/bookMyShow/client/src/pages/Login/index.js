@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Button, Form, Input, message } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginUser } from "../../calls/users";
 function Login() {
+  const navigate = useNavigate();
   const onFinish = async (values) => {
     try{
       const response = await LoginUser(values);
@@ -12,6 +13,7 @@ function Login() {
         console.log("in onFinish login", JSON.stringify(response));
         message.success(response.message);
         localStorage.setItem("token", response.data);
+        navigate("/");
       }else{
         message.error(response.message);
       }
@@ -20,6 +22,11 @@ function Login() {
     }
     
   };
+  useEffect(() => {
+      if (localStorage.getItem("token")) {
+        navigate("/");
+      }
+    }, []);
   return (
     <>
       <header className="App-header">
