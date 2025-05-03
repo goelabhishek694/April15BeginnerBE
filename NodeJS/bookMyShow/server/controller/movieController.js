@@ -37,7 +37,7 @@ exports.getAllMovies = async (req, res) => {
 
 exports.updateMovie = async (req, res) => {
     try{
-        const {id: movieId} = req.parms ;
+        const {id: movieId} = req.params ;
         const update = req.body;
         const updatedMovie = await Movie.findByIdAndUpdate(movieId, update);
         res.send({
@@ -55,7 +55,7 @@ exports.updateMovie = async (req, res) => {
 
 exports.deleteMovie = async (req, res) => {
     try{
-        const {id: movieId} = req.parms ;
+        const {id: movieId} = req.params ;
         await Movie.findByIdAndDelete(movieId);
         res.send({
             success: true,
@@ -71,7 +71,7 @@ exports.deleteMovie = async (req, res) => {
 
 exports.movieById = async (req, res) => {
     try{
-        const {id: movieId} = req.parms ;
+        const {id: movieId} = req.params ;
         const movie = await Movie.findById(movieId);
         res.send({
             success: true,
