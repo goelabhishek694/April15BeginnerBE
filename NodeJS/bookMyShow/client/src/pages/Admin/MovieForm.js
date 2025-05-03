@@ -15,8 +15,6 @@ const MovieForm = ({ isModalOpen, setIsModalOpen, selectedMovie, setSelectedMovi
   const onFinish = async (values) => {
     try {
       dispatch(showLoading());
-      console.log("inside in finish");
-      
       let response = null;
       if (formType === "add") {
         response = await AddMovie(values);
