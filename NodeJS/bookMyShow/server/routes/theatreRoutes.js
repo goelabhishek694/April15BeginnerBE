@@ -9,7 +9,7 @@ theatreRouter.delete("/:id", deleteTheatre);
 theatreRouter.get("/", getAllTheatres);
 
 //get all the theatres that are owned by Ajay Bijli -> owner of PVR 
-theatreRouter.get("/get-all-theatres-by-owner", getAllTheatresPartnerOwns);
+theatreRouter.get("/:ownerId", getAllTheatresPartnerOwns);
 
 
 module.exports = theatreRouter;

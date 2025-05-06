@@ -6,8 +6,8 @@ exports.addTheatre = async (req, res) => {
         await newTheatre.save();
         res.send({
             success: true,
-            message: "movie has been added",
-            data: newMovie
+            message: "theatre has been added",
+            data: newTheatre
         })
     }catch(err){
         res.status(500).json({
@@ -70,11 +70,11 @@ exports.getAllTheatres = async (req, res) => {
 
 exports.getAllTheatresPartnerOwns = async (req, res) => {
     try{
-        const ownerId = req.userId;
-        const allTheatres = await Theatre.find({owner: ownerId}).populate("owner");
+        const {ownerId} = req.params;
+        const allTheatres = await Theatre.find({owner: ownerId});
         res.send({
             success: true,
-            message: "theatres fetched successfully",
+            message: "theatres by owner fetched successfully",
             data: allTheatres
         })
     }catch(err){

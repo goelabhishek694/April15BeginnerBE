@@ -41,9 +41,9 @@ export const DeleteTheatre = async(id) => {
     }
 }
 
-export const GetAllTheatresPartnerOwns = async(id) => {
+export const GetAllTheatresPartnerOwns = async(ownerId) => {
     try{
-        const response = await axiosInstance.get(`/api/theatres/get-all-theatres-by-owner`);
+        const response = await axiosInstance.get(`/api/theatres/${ownerId}`);
         return response.data;
     }catch(err){
         console.log(err);

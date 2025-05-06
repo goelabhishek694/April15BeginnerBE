@@ -114,7 +114,7 @@ function MovieList() {
   ];
   return (
     <>
-      <div className="d-flex justify-content-end">
+      <div className="d-flex justify-content-start">
         <Button
           onClick={() => {
             setIsModalOpen(true);
