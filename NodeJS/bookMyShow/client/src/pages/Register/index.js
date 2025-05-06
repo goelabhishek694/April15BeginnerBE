@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Form, Input, message } from "antd";
 import { Link } from "react-router-dom";
 import { RegisterUser } from "../../calls/users";
+import Radio from "antd/es/radio/radio";
 function Register() {
   const onFinish = async (values) => {
     try{
@@ -65,6 +66,25 @@ function Register() {
                   placeholder="Enter your password"
                 />
               </Form.Item>
+
+              <Form.Item
+                label="Register as Partner"
+                name="role"
+                htmlFor="role"
+                className="d-block"
+                initialValue={false}
+                rules={[
+                  { required: true, message: "Please select an option !" },
+                ]}
+              >
+                <div className="d-flex justify-content-start">
+                  <Radio.Group name='radiogroup' className="flex-start">
+                    <Radio value={'partner'}>Yes</Radio>
+                    <Radio value={'user'}>No</Radio>
+                  </Radio.Group>
+                </div>
+              </Form.Item>
+
               <Form.Item className="d-block">
                 <Button
                   type="primary"
