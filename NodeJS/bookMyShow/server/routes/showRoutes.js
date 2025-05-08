@@ -4,7 +4,7 @@ const {addShow, allShowsByTheatre, allTheatresByMovieDate, updateShow, deleteSho
 showRouter.post("/", addShow);
 showRouter.get("/all-shows-by-theatre/:theatreId", allShowsByTheatre);
 //get all the theatres which have some shows , filter by movie and date 
-showRouter.get("/all-theatres-by-movie-date/:theatreId", allTheatresByMovieDate);
+showRouter.get("/all-theatres-by-movie-date/:movie/:date", allTheatresByMovieDate);
 showRouter.put("/:id", updateShow);
 showRouter.delete("/:id", deleteShow);
 showRouter.get("/:id", showById);
