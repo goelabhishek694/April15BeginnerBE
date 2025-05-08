@@ -1,8 +1,8 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import { HideLoading, ShowLoading } from "../../redux/loaderSlice";
+import { hideLoading, showLoading } from "../../redux/loaderSlice";
 import { useDispatch } from "react-redux";
-import { getAllMovies } from "../../api/movie";
+import { GetAllMovies } from "../../calls/movies";
 import { message, Row, Col, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
@@ -17,6 +17,30 @@ function Home() {
   const handleSearch = (e) => {
     setSearchText(e.target.value);
   }
+
+  const getData = async () => {
+      try {
+        dispatch(showLoading());
+        const response = await GetAllMovies();
+        const allMovies = response.data
+        console.log(allMovies);
+        
+        setMovies(
+          allMovies.map((movie) => {
+            return { ...movie, key: `movie${movie.id}` };
+          })
+        );
+        dispatch(hideLoading());
+      } catch (err) {
+        console.log(err.message);
+        message.error(err.message);
+        dispatch(hideLoading());
+      }
+    };
+
+  useEffect(() => {
+    getData();
+  },[]);
   return (
     <>
       <Row className="justify-content-center w-100">
@@ -43,7 +67,7 @@ function Home() {
         {movies &&
           movies
             .filter((movie) =>
-              movie.title.toLowerCase().includes(searchText.toLowerCase())
+              movie.name.toLowerCase().includes(searchText.toLowerCase())
             )
             .map((movie) => (
               <Col
@@ -81,7 +105,7 @@ function Home() {
                     }}
                     className="cursor-pointer"
                   >
-                    {movie.title}
+                    {movie.name}
                   </h3>
                 </div>
               </Col>
