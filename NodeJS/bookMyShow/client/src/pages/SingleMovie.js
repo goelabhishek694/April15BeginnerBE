@@ -59,7 +59,7 @@ function SingleMovie() {
 
     useEffect(() => {
         getAllTheatres()
-    },[]);
+    },[date]);
   return (
     <>
      <div className="inner-container">
