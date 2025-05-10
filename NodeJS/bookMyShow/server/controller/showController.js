@@ -46,8 +46,9 @@ exports.allTheatresByMovieDate = async (req, res) => {
     const  shows = await Show.find({movie, date}).populate("theatre");
     let uniqueTheatres =[];
     shows.forEach((show) => {
-        let theatre = show.theatre._id;
-        let oldTheatre = uniqueTheatres.find((uniqueTheatre) => uniqueTheatre == theatre);
+        let theatre = show.theatre._id.toString();
+        let oldTheatre = uniqueTheatres.find((uniqueTheatre) => uniqueTheatre["_id"].toString() == theatre
+        );
         //this means this is a unique theatre which is not present in our uniqueTheatres array , so we add it 
         if(!oldTheatre){
             let showsOfThisTheatre = shows.filter(show=> show.theatre._id == theatre);
@@ -102,7 +103,7 @@ exports.deleteShow = async (req, res) => {
 
 exports.showById = async (req, res) => {
   try {
-    const show = await Show.findById(req.params.showId)
+    const show = await Show.findById(req.params.id)
       .populate("movie")
       .populate("theatre");
     res.send({

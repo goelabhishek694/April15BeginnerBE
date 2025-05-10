@@ -1,18 +1,65 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import moment from 'moment';
-import {Input, Row, Col, Divider} from "antd"
+import {Input, Row, Col, Divider, message} from "antd"
 import {useNavigate, useParams} from "react-router-dom";
 import { CalendarOutlined } from "@ant-design/icons";
+import { useDispatch } from 'react-redux';
+import { showLoading, hideLoading } from '../redux/loaderSlice';
+import { MovieById } from '../calls/movies';
+import { GetAllTheatresByMovie } from '../calls/shows';
 function SingleMovie() {
     const [movie, setMovie] = useState(null);
     const [theatres, setTheatres] = useState([]);
     const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
     const navigate = useNavigate();
     const params = useParams();
+    const dispatch = useDispatch();
     const handleDate = (e) => {
         setDate(moment(e.target.value).format('YYYY-MM-DD'));
-        navigate(`/movie/${params.movieId}?date=${date}`)
+        navigate(`/movie/${params.movieId}?date=${e.target.value}`)
     }
+
+    const getData = async () => {
+        try {
+          dispatch(showLoading());
+          const movieResponse = await MovieById(params.movieId);
+          if (movieResponse.success) {
+            setMovie(movieResponse.data);
+          } else {
+            message.error(movieResponse.message);
+          }
+          dispatch(hideLoading());
+        } catch (err) {
+          message.error(err.message);
+          dispatch(hideLoading());
+        }
+    };
+
+    const getAllTheatres = async () => {
+        try {
+          dispatch(showLoading());
+          const theatreResponse = await GetAllTheatresByMovie({movie:params.movieId, date});
+          if (theatreResponse.success) {
+            console.log(theatreResponse.data);
+            
+            setTheatres(theatreResponse.data);
+          } else {
+            message.error(theatreResponse.message);
+          }
+          dispatch(hideLoading());
+        } catch (err) {
+          message.error(err.message);
+          dispatch(hideLoading());
+        }
+    };
+
+    useEffect(() => {
+        getData()
+    },[]);
+
+    useEffect(() => {
+        getAllTheatres()
+    },[]);
   return (
     <>
      <div className="inner-container">
