@@ -8,6 +8,7 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import Admin from './pages/Admin';
 import Partner from './pages/Partner';
 import User from './pages/User';
+import SingleMovie from './pages/SingleMovie';
 function App() {
   return (
     <div>
@@ -19,6 +20,7 @@ function App() {
           <Route path='/admin' element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
           <Route path='/partner' element={<ProtectedRoute><Partner/></ProtectedRoute>}/>
           <Route path='/profile' element={<ProtectedRoute><User/></ProtectedRoute>}/>
+          <Route path='/movie/:movieId' element={<ProtectedRoute><SingleMovie/></ProtectedRoute>}/>
         </Routes>
       </BrowserRouter>
     </div>
