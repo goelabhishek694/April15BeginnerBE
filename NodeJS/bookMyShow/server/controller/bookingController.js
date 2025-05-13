@@ -41,7 +41,7 @@ exports.bookShow = async (req, res) => {
         const newBooking = await new Booking(req.body);
         await newBooking.save();
 
-        const show = Show.findById(req.body.show);
+        const show = await Show.findById(req.body.show);
         const updatedBookedSeats = [...show.bookedSeats, ...req.body.seats]
         await Show.findByIdAndUpdate(req.body.show, {
             bookedSeats: updatedBookedSeats

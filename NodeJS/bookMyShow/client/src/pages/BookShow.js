@@ -21,7 +21,8 @@ const BookShow = () => {
  const onToken= async (token)=>{
   try{
     dispatch(showLoading());
-    const response = await makePayment({token, amount: (selectedSeats.length * show.ticketPrice*100)});
+    const amount = (selectedSeats.length * show.ticketPrice*100);
+    const response = await makePayment(token, amount);
     if(response.success){
       message.success(response.message);
       book(response.data);
