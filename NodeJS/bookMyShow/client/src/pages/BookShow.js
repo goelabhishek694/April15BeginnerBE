@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { message, Card, Row, Col, Button } from "antd";
 import moment from "moment";
 import StripeCheckout from 'react-stripe-checkout'; // Stripe Checkout
+import { bookShow, makePayment } from "../calls/booking";
 
 
 const BookShow = () => {
@@ -17,8 +18,42 @@ const BookShow = () => {
  const params = useParams(); // Extracting URL parameters
  const navigate = useNavigate(); // Navigation hook
 
- const onToken=(token)=>{
-  console.log(token)
+ const onToken= async (token)=>{
+  try{
+    dispatch(showLoading());
+    const response = await makePayment({token, amount: (selectedSeats.length * show.ticketPrice*100)});
+    if(response.success){
+      message.success(response.message);
+      book(response.data);
+    }else{
+      message.error(response.message);
+    }
+    dispatch(hideLoading())
+  }catch(err){
+    message.error(err.message);
+    dispatch(hideLoading())
+  }
+ }
+
+ const book = async (transactionId) => {
+  try{
+    dispatch(showLoading());
+    const response = await bookShow({
+      show: params.id,
+      user: user._id,
+      seats: selectedSeats,
+      transactionId});
+    if(response.success){
+      message.success(response.message);
+      navigate("/profile");
+    }else{
+      message.error(response.message);
+    }
+    dispatch(hideLoading())
+  }catch(err){
+    message.error(err.message);
+    dispatch(hideLoading())
+  }
  }
 
  // Function to fetch show data by ID

@@ -3,7 +3,7 @@ import { axiosInstance } from ".";
 
 export const makePayment = async (token, amount) => {
  try {
-   const response = await axiosInstance.post("/api/bookings/make-payment", {
+   const response = await axiosInstance.post("/api/booking/make-payment", {
      token,
      amount,
    });
@@ -18,7 +18,7 @@ export const makePayment = async (token, amount) => {
 export const bookShow = async (payload) => {
  try {
    const response = await axiosInstance.post(
-     "/api/bookings/book-show",
+     "/api/booking/book-show",
      payload
    );
    console.log(response.data);
@@ -32,7 +32,7 @@ export const bookShow = async (payload) => {
 export const getAllBookings = async (userId) => {
  try {
    const response = await axiosInstance.get(
-     `/api/bookings/all-bookings/${userId}`
+     `/api/booking/all-bookings/${userId}`
    );
    return response.data;
  } catch (err) {

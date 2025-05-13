@@ -14,7 +14,7 @@ exports.makePayment = async (req, res) => {
             amount,
             currency:"inr",
             customer: customer.id,
-            payment_method_type: ["card"],
+            payment_method_types: ["card"],
             receipt_email: token.email,
             description: "Token has been assigned to the movie",
             confirm: true
