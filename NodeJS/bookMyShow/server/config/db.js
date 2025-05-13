@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const url = process.env.MONGODB_READ_WRITE
+require("dotenv").config()
+const {RESEND_API_KEY} = process.env
 const connectToDB = async () => {
   try {
     await mongoose.connect(url);

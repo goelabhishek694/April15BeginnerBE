@@ -7,3 +7,7 @@ https://mongoosejs.com/docs/queries.html
 
 whatsapp group link
 https://chat.whatsapp.com/KAUolcJN0EAE4O8k2UMvKb
+
+13/05/25
+https://mozilla.github.io/nunjucks/
+https://resend.com/docs/send-with-nodejs
