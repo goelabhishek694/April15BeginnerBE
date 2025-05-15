@@ -7,7 +7,7 @@ function Login() {
   const onFinish = async (values) => {
     try{
       const response = await LoginUser(values);
-      console.log(typeof response);
+      console.log(response);
       
       if(response.success){
         console.log("in onFinish login", JSON.stringify(response));

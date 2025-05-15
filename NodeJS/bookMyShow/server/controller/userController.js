@@ -141,7 +141,7 @@ exports.resetPassword = async (req, res) => {
     }
 
     //search for user with id
-    const user = User.findOne({ otp });
+    const user = await User.findOne({ otp });
     if (!user) {
       return res.status(404).json({
         success: false,
