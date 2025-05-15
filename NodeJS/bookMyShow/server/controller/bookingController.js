@@ -49,6 +49,7 @@ exports.bookShow = async (req, res) => {
         })
 
         const populatedBooking = await Booking.findById(newBooking._id)
+        .populate("user")
         .populate("show")
         .populate({
             path: "show",
@@ -63,8 +64,21 @@ exports.bookShow = async (req, res) => {
                 path: "theatre",
                 model: "theatre"
             }
-        })
+        });
+        console.log("ninja", populatedBooking);
+        
 
+        await emailHelper("ticket.html", populatedBooking.user?.email, {
+            poster: populatedBooking.show.movie.poster,
+            name: populatedBooking.user.name,
+            movie: populatedBooking.show.movie.name,
+            theatre: populatedBooking.show.theatre.name,
+            date: populatedBooking.show.date,
+            time: populatedBooking.show.time,
+            seats: populatedBooking.seats,
+            amount: populatedBooking.seats.length * populatedBooking.show.ticketPrice,
+            transactionId: populatedBooking.transactionId
+        });
 
         res.send({
             success: true,
@@ -72,16 +86,6 @@ exports.bookShow = async (req, res) => {
             data: newBooking
         })
 
-        await emailHelper("ticket.html", user.email, {
-            name: populatedBooking.user.name,
-            movie: populatedBooking.user.movie.name,
-            theatre: populatedBooking.theatre.name,
-            date: populatedBooking.show.date,
-            time: populatedBooking.show.time,
-            seats: populatedBooking.seats,
-            amount: populatedBooking.seats.length * populatedBooking.show.ticketPrice,
-            transactionId: populatedBooking.transactionId
-        });
     }catch(err){
         res.status(500).json({
             message: err.message,
