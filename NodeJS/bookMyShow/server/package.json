@@ -12,6 +12,7 @@
   "description": "apis of bms",
   "dependencies": {
     "axios": "^1.9.0",
+    "bcrypt": "^6.0.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "moment": "^2.30.1",

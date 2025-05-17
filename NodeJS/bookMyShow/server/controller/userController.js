@@ -1,6 +1,8 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const emailHelper = require("../utils/emailHelper");
+const bcrypt = require("bcrypt");
+
 exports.registerUser = async (req, res) => {
   try {
     const { email } = req.body;
@@ -11,7 +13,10 @@ exports.registerUser = async (req, res) => {
         success: false,
       });
     }
-    const newUser = new User(req.body);
+    //hash the password
+    const saltRounds = 10; // the higher the number, the more secure but slower is the hashing process
+    const hashedPassword = await bcrypt.hash(req.body?.password, saltRounds);
+    const newUser = new User({...req.body, password: hashedPassword});
     await newUser.save();
 
     return res.json({
@@ -37,7 +42,8 @@ exports.loginUser = async (req, res) => {
         success: false,
       });
     }
-    if (password !== user.password) {
+    const isMatch = await bcrypt.compare(password, user.password)
+    if (!isMatch ) {
       return res.status(401).json({
         message: "Invalid Credentials",
         success: false,

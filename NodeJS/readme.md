@@ -11,3 +11,6 @@ https://chat.whatsapp.com/KAUolcJN0EAE4O8k2UMvKb
 13/05/25
 https://mozilla.github.io/nunjucks/
 https://resend.com/docs/send-with-nodejs
+
+17/05/2025
+https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
