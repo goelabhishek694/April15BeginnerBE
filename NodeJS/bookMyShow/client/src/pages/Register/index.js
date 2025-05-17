@@ -1,14 +1,16 @@
 import React from "react";
 import { Button, Form, Input, message } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RegisterUser } from "../../calls/users";
 import Radio from "antd/es/radio/radio";
 function Register() {
+  const navigate = useNavigate();
   const onFinish = async (values) => {
     try{
       const response = await RegisterUser(values);
       if(response.success){
         message.success(response.message);
+        navigate("/login");
       }else{
         message.error(response.message);
       }
