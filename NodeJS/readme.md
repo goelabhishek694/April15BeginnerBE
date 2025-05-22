@@ -20,3 +20,19 @@ https://portswigger.net/web-security/nosql-injection#:~:text=NoSQL%20operator%20
 
 20/05/2025
 https://www.npmjs.com/package/commander
+
+
+Node.js Child Processes: Everything You Need to Know
+https://www.freecodecamp.org/news/node-js-child-processes-everything-you-need-to-know-e69498fe970a/
+
+Event Loop Timers and process.nextTick
+https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
+
+libuv
+https://libuv.org/
+
+MIME Types
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types
+
+Node.js: Don't Block the Event Loop
+https://nodejs.org/en/learn/asynchronous-work/dont-block-the-event-loop
