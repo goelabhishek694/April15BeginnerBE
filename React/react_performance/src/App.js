@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 // import AboutPage from './AboutPage';
 // import ContactPage from './ContactPage';
 import { lazy, Suspense, useEffect, useState } from 'react';
+import LargeArraySum from './LargeArraySum';
+import ItemList from './ItemList';
 
 //lazy load the components
 const HomePage = lazy(() =>  import("./HomePage"));
@@ -33,40 +35,42 @@ function App() {
   // }
  
   return (
-    <Router>
-      <div>
-        {/* <Navbar/> */}
+//     <Router>
+//       <div>
+//         {/* <Navbar/> */}
 
-        {/* <nav>
-            <ul>
-                <li><Link to="/" onClick={loadHomePage}>Home</Link></li>
-                <li><Link to="/about" onClick={loadAboutPage}>About</Link></li>
-                <li><Link to="/contact" onClick={loadContactPage}>Contact</Link></li>
-            </ul>
-          </nav> */}
+//         {/* <nav>
+//             <ul>
+//                 <li><Link to="/" onClick={loadHomePage}>Home</Link></li>
+//                 <li><Link to="/about" onClick={loadAboutPage}>About</Link></li>
+//                 <li><Link to="/contact" onClick={loadContactPage}>Contact</Link></li>
+//             </ul>
+//           </nav> */}
 
-        <nav>
-            <ul>
-                <li><Link to="/" >Home</Link></li>
-                <li><Link to="/about" >About</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
-            </ul>
-        </nav>
-        <Suspense fallback={<div>Loading...</div>}/>
-        {/* <Routes>
-          <Route path='/' element={HomePage ? <HomePage/>: <div>Loading...</div>}></Route>
-          <Route path='/about' element={AboutPage? <AboutPage/> : <div>Loading...</div>}></Route>
-          <Route path='/contact' element={ContactPage ? <ContactPage/>: <div>Loading...</div>}></Route>
-        </Routes> */}
+//         <nav>
+//             <ul>
+//                 <li><Link to="/" >Home</Link></li>
+//                 <li><Link to="/about" >About</Link></li>
+//                 <li><Link to="/contact">Contact</Link></li>
+//             </ul>
+//         </nav>
+//         <Suspense fallback={<div>Loading...</div>}/>
+//         {/* <Routes>
+//           <Route path='/' element={HomePage ? <HomePage/>: <div>Loading...</div>}></Route>
+//           <Route path='/about' element={AboutPage? <AboutPage/> : <div>Loading...</div>}></Route>
+//           <Route path='/contact' element={ContactPage ? <ContactPage/>: <div>Loading...</div>}></Route>
+//         </Routes> */}
 
-<Routes>
-          <Route path='/' element={<HomePage/>}></Route>
-          <Route path='/about' element={<AboutPage/> }></Route>
-          <Route path='/contact' element={<ContactPage/>}></Route>
-        </Routes>
-      </div>
+// <Routes>
+//           <Route path='/' element={<HomePage/>}></Route>
+//           <Route path='/about' element={<AboutPage/> }></Route>
+//           <Route path='/contact' element={<ContactPage/>}></Route>
+//         </Routes>
+//       </div>
 
-    </Router>
+//     </Router>
+/* <LargeArraySum/> */
+<ItemList/>
   );
 }
 
